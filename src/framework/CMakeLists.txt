@@ -69,6 +69,8 @@ set(FRAMEWORK_SRC
     rz/rzrandom.h
     rz/rzrandomsuper.cpp
     rz/rzrandomsuper.h
+    rz/rzstd.cpp
+    rz/rzstd.h
     rz/rzstring.cpp
     rz/rzstring.h
     rz/rzsysservptr.h

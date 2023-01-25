@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <rz/rzrandom.h>
 #include <rzrandomsuper.h>
-#include <stdint.h>
+#include <cstdint>
 
 TEST(random, lcg_rng)
 {

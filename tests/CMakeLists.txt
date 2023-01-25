@@ -20,7 +20,7 @@ if (NOT GTest_FOUND)
     endif()
 endif()
 
-add_executable(test_lasmarionetas test_rzcmdline.cpp test_rzrandom.cpp)
+add_executable(test_lasmarionetas test_rzcmdline.cpp test_rzrandom.cpp test_rzstd.cpp)
 target_link_libraries(test_lasmarionetas GTest::gtest GTest::gtest_main)
 target_compile_definitions(test_lasmarionetas PRIVATE -DTESTDATA_PATH="${CMAKE_CURRENT_SOURCE_DIR}/data")
 
