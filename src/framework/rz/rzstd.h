@@ -22,12 +22,12 @@ public:
         Error = 8,
     };
 
-    cRZStd(tMessageType type, char const* message, char const* source_file_location);
+    cRZStd(tMessageType type, char const * source_file_location, unsigned long identifier);
     int LogSprintf(char const* message1, long, char const* message2, ...);
 
 private:
     int FromChar(char*);
     void LogAssertText(char const*, long, cRZStd::tMessageType, char*, char*, char*, long, bool);
     void DisplayAssertText(void*, char const*, char const*, long);
-    int VSprintf(char const*);
+    static int VSprintf(char const*, ...);
 };

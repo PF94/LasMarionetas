@@ -12,45 +12,32 @@
  */
 
 #include "rzstd.h"
+#include <cstdarg>
 
-cRZStd::cRZStd(cRZStd::tMessageType mtype, const char *message, const char *source_file_location) {
-    uint32_t mtype_level = mtype & 15;
-    uint32_t mtype_nonsense = mtype_level << 4 | 10;
-
-    char buffer[1024];
-
-    int print_buffer = this->VSprintf(message);
-
-    // well this code seems like nonsense to me.
-
-    if (mtype_level != 8) { // if it isn't an error
-        if (mtype_level == 4 || mtype_level == 5) {
-            mtype_nonsense << 4 | 2;
-            mtype_nonsense = mtype_nonsense;
-        }
-        if ((mtype_level == 64) || mtype_level == 80 || (mtype_level == 112)) {
-            mtype_nonsense = mtype_nonsense | 4;
-            mtype_nonsense = mtype_nonsense;
-        }
-        if ((mtype_level == 0) || mtype_level == 96 || (mtype_level == 16 || (mtype_level == 32))) {
-            mtype_nonsense = mtype_nonsense | 1;
-        }
-    }
-    std::cout << "buffer: " << print_buffer << " - source file: " << source_file_location << " - level: " << mtype_level << std::endl;
+cRZStd::cRZStd(cRZStd::tMessageType mtype, const char* source_file_location, unsigned long identifier)
+{
+    // incomplete
+    VSprintf(source_file_location);
 }
 
-int cRZStd::LogSprintf(const char * message1, long, const char * message2, ...) {
-    char buffer [1024];
-
+int cRZStd::LogSprintf(const char * message1, long, const char * message2, ...)
+{
     if (message2 != nullptr) {
         printf("cRZStd::LogSprintf: Missing RZGetFramework()");
     }
     return 0;
 }
 
-int cRZStd::VSprintf(char const* message) {
+int cRZStd::VSprintf(char const* message, ...)
+{
+    int result = 0;
     char buffer[1024];
-    __builtin_va_list args;
+    va_list va;
 
-    return vsnprintf(buffer, 1024, message, args);
+    va_start(va, message);
+    if (message) {
+        result = vsnprintf(buffer, sizeof(buffer), message, va);
+    }
+
+    return result;
 }

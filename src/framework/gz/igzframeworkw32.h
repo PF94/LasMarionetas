@@ -23,7 +23,7 @@ class cIGZFrameWorkW32 : public cIGZUnknown
 {
 public:
     /**
-     * @return Returns a pointer to the class using the cIZGFrameWork derived interface.
+     * @return Returns a pointer to the class using the cIGZFrameWork derived interface.
      */
     virtual cIGZFrameWork *AsIGZFrameWork() = 0;
     /**
