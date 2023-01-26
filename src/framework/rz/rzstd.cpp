@@ -14,16 +14,10 @@
 #include "rzstd.h"
 #include <cstdarg>
 
-cRZStd::cRZStd(cRZStd::tMessageType mtype, const char* source_file_location, unsigned long identifier)
-{
-    // incomplete
-    VSprintf(source_file_location);
-}
-
 int cRZStd::LogSprintf(const char * message1, long, const char * message2, ...)
 {
     if (message2 != nullptr) {
-        printf("cRZStd::LogSprintf: Missing RZGetFramework()");
+        int* framework = nullptr; //RZGetFramework();
     }
     return 0;
 }
