@@ -61,8 +61,8 @@ public:
     static eProductIndex GetActiveCodeVersion() { return Vacation; };
     static eEPFlags GetActiveEPFlag() { return VacationF; };
     static eProductIndex GetActiveProductIndex() { return Vacation; };
-    static bool GetAppInfo(char const* executable, char* par1, unsigned long* par2, char* par3, unsigned long* par4,
-        char* par5, unsigned long* par6, unsigned long* par7);
+    static bool GetAppInfo(char const* executable, char* par2, unsigned long* par3, char* par4, unsigned long* par5,
+        char* par6, unsigned long* par7, unsigned long* par8);
     eEPFlags GetEPFlagFromProductIndex(eProductIndex product);
     static bool GetExeNameForHighestInstalledProductFromRegistry(char* executable);
     unsigned int GetInstalledEPS(); // mask()???
