@@ -32,13 +32,14 @@ public:
         this->identifier = identifier;
     }
 
-    int LogSprintf(char const* kind, long, char const* warning, ...);
+    int LogSprintf(char const* name, long identifier, char const* warning, ...);
 
 private:
-    int FromChar(char*);
+    //int FromChar(char*); Not used
     static int VSprintf(char const*, ...);
 };
 
-void cRZStd_LogAssertText(char const*, long, cRZStd::tMessageType, char*, char*, char*, long, bool);
-void cRZStd_DisplayAssertText(void*, char const*, char const*, long);
-void cRZStd_DisplayAssertDialog(void*, char const*, char const*, long);
+void cRZStd_LogAssertText(char const* name, long, cRZStd::tMessageType, char* warning, char* va_list, char* source_file,
+    long identifier, bool);
+void cRZStd_DisplayAssertText(void* something, char const* warning, char const* source_file_location, long identifier);
+// void cRZStd_DisplayAssertDialog(void*, char const*, char const*, long); only called by FromChar which isn't called by anything else

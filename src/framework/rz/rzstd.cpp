@@ -14,10 +14,27 @@
 #include "rzstd.h"
 #include <cstdarg>
 
-int cRZStd::LogSprintf(const char * message1, long, const char * message2, ...)
+int cRZStd::LogSprintf(const char * name, long identifier, const char * warning, ...)
 {
-    if (message2 != nullptr) {
-        int* framework = nullptr; //RZGetFramework();
+    char buffer[1024];
+    bool seeminglyAlwaysTrue[13];
+
+    if (warning != nullptr) {
+        int* framework = nullptr; //calls RZGetFramework() which isn't implemented yet
+
+        va_list va;
+        va_start(va, warning);
+
+        cRZStd_LogAssertText(name, identifier, this->type,
+            (char *)warning, va, (char *)this->source_file_location,
+            this->identifier, true);
+
+        std::vsnprintf(buffer, sizeof(buffer), warning, va);
+        if (framework == nullptr) {
+            cRZStd_DisplayAssertText(nullptr, buffer, source_file_location, identifier);
+        } else {
+            std::cout << "framework found, but this part of cRZStd::LogSprintf isn't implemented." << std::endl;
+        }
     }
     return 0;
 }
@@ -30,7 +47,7 @@ int cRZStd::VSprintf(char const* message, ...)
 
     va_start(va, message);
     if (message) {
-        result = vsnprintf(buffer, sizeof(buffer), message, va);
+        result = std::vsnprintf(buffer, sizeof(buffer), message, va);
     }
 
     return result;

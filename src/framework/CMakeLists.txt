@@ -71,6 +71,7 @@ set(FRAMEWORK_SRC
     rz/rzrandomsuper.h
     rz/rzstd.cpp
     rz/rzstd.h
+    rz/rzstd_assert.cpp
     rz/rzstring.cpp
     rz/rzstring.h
     rz/rzsysservptr.h
