@@ -15,15 +15,17 @@
 #include "rzstring.h"
 
 void cRZStd_LogAssertText(char const* name, long, cRZStd::tMessageType, char* warning, char* va_list, char* source_file,
-    long identifier, bool) {
+    long line, bool) {
     std::cout << "cRZStd_LogAssertText: This function requires nGZLog which isn't implemented" << std::endl;
 }
 
-void cRZStd_DisplayAssertText(void* something, char const* warning, char const* source_file_location, long identifier) {
+void cRZStd_DisplayAssertText(void* something, char const* warning, char const* source_file_location, long line) {
     char* buffer_pointer = const_cast<char *>(warning);
+    char buffer[1024];
 
     if (source_file_location) {
-        snprintf(buffer_pointer, 1023, "%s (%d): %s", source_file_location, identifier, warning);
+        buffer_pointer = buffer;
+        snprintf(buffer_pointer, 1023, "%s (%d): %s", source_file_location, line, warning);
         std::cout << "cRZStd_DisplayAssertText: " << buffer_pointer << std::endl;
     }
 }

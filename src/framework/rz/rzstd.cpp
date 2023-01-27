@@ -14,7 +14,7 @@
 #include "rzstd.h"
 #include <cstdarg>
 
-int cRZStd::LogSprintf(const char * name, long identifier, const char * warning, ...)
+int cRZStd::LogSprintf(const char * name, long line, const char * warning, ...)
 {
     char buffer[1024];
     bool seeminglyAlwaysTrue[13];
@@ -25,13 +25,13 @@ int cRZStd::LogSprintf(const char * name, long identifier, const char * warning,
         va_list va;
         va_start(va, warning);
 
-        cRZStd_LogAssertText(name, identifier, this->type,
+        cRZStd_LogAssertText(name, line, this->type,
             (char *)warning, va, (char *)this->source_file_location,
             this->identifier, true);
 
         std::vsnprintf(buffer, sizeof(buffer), warning, va);
         if (framework == nullptr) {
-            cRZStd_DisplayAssertText(nullptr, buffer, source_file_location, identifier);
+            cRZStd_DisplayAssertText(nullptr, buffer, source_file_location, line);
         } else {
             std::cout << "framework found, but this part of cRZStd::LogSprintf isn't implemented." << std::endl;
         }
