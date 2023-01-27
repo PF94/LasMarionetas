@@ -14,7 +14,7 @@
 #pragma once
 #include "igzstring.h"
 
-void RZGetCurrentAppPath(cIGZString&);
+void RZGetCurrentAppPath(cIGZString& string);
 void RZGetCurrentAppPath(char*, unsigned long);
 void RZGetEnvironmentVariable(char const*, char*, unsigned long);
 void RZGetMemoryReport();

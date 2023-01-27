@@ -27,7 +27,7 @@ int cRZStd::LogSprintf(const char * name, long line, const char * warning, ...)
 
         cRZStd_LogAssertText(name, line, this->type,
             (char *)warning, va, (char *)this->source_file_location,
-            this->identifier, true);
+            line, true);
 
         std::vsnprintf(buffer, sizeof(buffer), warning, va);
         if (framework == nullptr) {

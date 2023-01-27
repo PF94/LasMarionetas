@@ -12,3 +12,10 @@
  */
 
 #include "rzgetapp.h"
+#include "tsepsupport.h"
+
+void RZGetCurrentAppPath(cIGZString& string)
+{
+    char executable[257];
+    TSEPSupport::GetExeNameForHighestInstalledProductFromRegistry(executable);
+}

@@ -24,15 +24,13 @@ public:
 
     tMessageType type;
     char const * source_file_location;
-    unsigned long identifier;
 
-    cRZStd(tMessageType type, char const * source_file_location, unsigned long identifier) {
+    cRZStd(tMessageType type, char const * source_file_location) {
         this->type = type;
         this->source_file_location = source_file_location;
-        this->identifier = identifier;
     }
 
-    int LogSprintf(char const* name, long identifier, char const* warning, ...);
+    int LogSprintf(char const* name, long line, char const* warning, ...);
 
 private:
     //int FromChar(char*); Not used
@@ -41,5 +39,5 @@ private:
 
 void cRZStd_LogAssertText(char const* name, long, cRZStd::tMessageType, char* warning, char* va_list, char* source_file,
     long identifier, bool);
-void cRZStd_DisplayAssertText(void* something, char const* warning, char const* source_file_location, long identifier);
+void cRZStd_DisplayAssertText(void* something, char const* warning, char const* source_file_location, long line);
 // void cRZStd_DisplayAssertDialog(void*, char const*, char const*, long); only called by FromChar which isn't called by anything else

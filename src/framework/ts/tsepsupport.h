@@ -14,7 +14,7 @@
 #pragma once
 
 #include "rzstring.h"
-class TSEpSupport
+class TSEPSupport
 {
 public:
     /**
@@ -43,7 +43,7 @@ public:
     /**
      * Flags for indicating what expansion pack is installed.
      */
-    enum eEPFlags: int {
+    enum eEPFlags: uint16_t {
         BaseGameF = 0x0, /*!< Base game */
         UniversityF = 0x2, /*!< University Expansion Pack */
         NightlifeF = 0x4, /*!< Nightlife Expansion Pack */
@@ -51,7 +51,7 @@ public:
         PetsF = 0x40, /*!< Pets Expansion Pack */
         SeasonsF = 0x80, /*!< Seasons Expansion Pack */
         VacationF = 0x400, /*!< Bon Voyage Expansion Pack (macOS Super Collection) */
-    }
+    };
 
     const char* kSims2EXENameBaseProduct = "Sims2.exe"; /*!< File name of base game's Windows executable */
     const char* kSims2EXECurrentProduct = nullptr;
@@ -61,13 +61,14 @@ public:
     static eProductIndex GetActiveCodeVersion() { return Vacation; };
     static eEPFlags GetActiveEPFlag() { return VacationF; };
     static eProductIndex GetActiveProductIndex() { return Vacation; };
-    bool GetAppInfo(char const*, char*, unsigned long*, char*, unsigned long*, char*, unsigned long*, unsigned long*);
-    eEPFlags GetEPFlagFromProductIndex(eProductIndex);
-    void GetExeNameForHighestInstalledProductFromRegistry(char*);
+    static bool GetAppInfo(char const* executable, char* par1, unsigned long* par2, char* par3, unsigned long* par4,
+        char* par5, unsigned long* par6, unsigned long* par7);
+    eEPFlags GetEPFlagFromProductIndex(eProductIndex product);
+    static bool GetExeNameForHighestInstalledProductFromRegistry(char* executable);
     unsigned int GetInstalledEPS(); // mask()???
     int GetLatestProductIndex();
-    bool IsEPInstalled(eEPFlags);
-    bool IsEPInstalled(eProductIndex);
+    bool IsEPInstalled(eEPFlags expansionpack);
+    bool IsEPInstalled(eProductIndex product);
     unsigned int IsMoreAdvancedExpansionPackInstalled(char*, int*);
     cRZString IsUserDataPath(cIGZString const&);
     bool UpdateEPInfo(char*, char*, int);
