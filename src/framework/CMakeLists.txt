@@ -12,6 +12,7 @@ set(FRAMEWORK_INCLUDES
     .
     gz
     rz
+    ts
 )
 
 set(FRAMEWORK_SRC
@@ -65,6 +66,8 @@ set(FRAMEWORK_SRC
     rz/rzdate.h
     rz/rzfastalloc.cpp
     rz/rzfastalloc.h
+    rz/rzgetapp.cpp
+    rz/rzgetapp.h
     rz/rzrandom.cpp
     rz/rzrandom.h
     rz/rzrandomsuper.cpp
@@ -80,6 +83,11 @@ set(FRAMEWORK_SRC
     rz/rztime.cpp
     rz/rztime.h
     unichar.h
+)
+
+set(TS_FRAMEWORK_SRC
+    ts/tsepsupport.cpp
+    ts/tsepsupport.h
 )
 
 set(FRAMEWORK_LIBS compat gimex miniposix)
@@ -105,6 +113,13 @@ if(STANDALONE OR PLUGIN OR BUILD_TESTS)
     add_dependencies(gzframework check_git)
     target_link_libraries(gzframework PUBLIC ${FRAMEWORK_LIBS})
     target_compile_features(gzframework PUBLIC cxx_std_17) # Pass the required standard down.
+    if(BUILD_PEOPLEGAME OR BUILD_PEOPLEEDITOR OR BUILD_PACKAGEINST)
+        add_library(tsframework STATIC ${TS_FRAMEWORK_SRC})
+        target_include_directories(tsframework PUBLIC ${FRAMEWORK_INCLUDES})
+        add_dependencies(tsframework check_git)
+        target_link_libraries(tsframework PUBLIC ${FRAMEWORK_LIBS})
+        target_compile_features(tsframework PUBLIC cxx_std_17) # Pass the required standard down.
+    endif()
 endif()
 
 # DLL builds expose any globals as a reference that the injectable dll builds provide hooks against.
@@ -113,13 +128,14 @@ if(DLLBUILD)
     if(BUILD_PEOPLEGAME OR BUILD_PEOPLEEDITOR OR BUILD_PACKAGEINST)
         # Build to match ABI of people simulator and people editor.
         add_library(gzframework_people STATIC hooks/hooker.h hooks/gzhookedfuncs.cpp ${FRAMEWORK_SRC})
+        add_library(tsframework_people STATIC ${TS_FRAMEWORK_SRC})
         # Original game uses STLPort instead of MSVC SDK for std namespace stuff. To match ABI we need to as well.
         # Note that this limits us to mostly C++98 level STL features.
-        target_include_directories(gzframework_people PUBLIC ${CMAKE_SOURCE_DIR}/thirdparty/stlport ${FRAMEWORK_INCLUDES} hooks)
-        add_dependencies(gzframework_people check_git)
-        target_compile_definitions(gzframework_people PUBLIC DLL_BUILD MATCH_ABI)
-        target_link_libraries(gzframework_people PUBLIC ${FRAMEWORK_LIBS})
-        target_compile_features(gzframework_people PUBLIC cxx_std_17) # Pass the required standard down.
+        target_include_directories(gzframework_people tsframework_people PUBLIC ${CMAKE_SOURCE_DIR}/thirdparty/stlport ${FRAMEWORK_INCLUDES} hooks)
+        add_dependencies(gzframework_people tsframework_people check_git)
+        target_compile_definitions(gzframework_people tsframework_people PUBLIC DLL_BUILD MATCH_ABI)
+        target_link_libraries(gzframework_people tsframework_people PUBLIC ${FRAMEWORK_LIBS})
+        target_compile_features(gzframework_people tsframework_people PUBLIC cxx_std_17) # Pass the required standard down.
     endif()
 
     if(BUILD_HOUSEEDITOR)

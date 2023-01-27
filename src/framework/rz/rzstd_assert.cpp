@@ -28,4 +28,6 @@ void cRZStd_DisplayAssertText(void* something, char const* warning, char const* 
         snprintf(buffer_pointer, 1023, "%s (%d): %s", source_file_location, line, warning);
         std::cout << "cRZStd_DisplayAssertText: " << buffer_pointer << std::endl;
     }
+
+    //incomplete
 }
