@@ -30,7 +30,7 @@ public:
         this->source_file_location = source_file_location;
     }
 
-    int LogSprintf(char const* name, long line, char const* warning, ...);
+    virtual int LogSprintf(char const* name, long line, char const* warning, ...);
 
 private:
     //int FromChar(char*); Not used

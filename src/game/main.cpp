@@ -1,5 +1,6 @@
 #include "rzgetapp.h"
 #include "rzstd.h"
+#include "gzframework.h"
 #include <iostream>
 
 int main(int argc, char **argv)

@@ -12,15 +12,15 @@
  */
 
 #include "rzstd.h"
+#include "gzframework.h"
 #include <cstdarg>
 
 int cRZStd::LogSprintf(const char * name, long line, const char * warning, ...)
 {
     char buffer[1024];
-    bool seeminglyAlwaysTrue[13];
 
     if (warning != nullptr) {
-        int* framework = nullptr; //calls RZGetFramework() which isn't implemented yet
+        cGZFrameWork* framework = RZGetFrameWork();
 
         va_list va;
         va_start(va, warning);
@@ -33,7 +33,7 @@ int cRZStd::LogSprintf(const char * name, long line, const char * warning, ...)
         if (framework == nullptr) {
             cRZStd_DisplayAssertText(nullptr, buffer, source_file_location, line);
         } else {
-            std::cout << "framework found, but this part of cRZStd::LogSprintf isn't implemented." << std::endl;
+            std::cerr << "(cRZStd::LogSprintf) Framework found, but code for this isn't implemented" << std::endl;
         }
     }
     return 0;

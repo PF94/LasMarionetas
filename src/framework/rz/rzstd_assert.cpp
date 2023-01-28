@@ -16,7 +16,7 @@
 
 void cRZStd_LogAssertText(char const* name, long, cRZStd::tMessageType, char* warning, char* va_list, char* source_file,
     long line, bool) {
-    std::cout << "cRZStd_LogAssertText: This function requires nGZLog which isn't implemented" << std::endl;
+    std::cerr << "(cRZStd_LogAssertText) This function requires nGZLog which isn't implemented" << std::endl;
 }
 
 void cRZStd_DisplayAssertText(void* something, char const* warning, char const* source_file_location, long line) {

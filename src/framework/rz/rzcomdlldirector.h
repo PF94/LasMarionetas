@@ -61,6 +61,7 @@ public:
     virtual bool GetLibraryPath(cIGZString &sLibraryPath) override;
     virtual uint32_t GetHeapAllocatedSize() override;
 
+#if 0
     // cIGZFrameWorkHooks
     virtual bool PreFrameWorkInit() override;
     virtual bool PreAppInit() override;
@@ -70,6 +71,7 @@ public:
     virtual bool PostSystemServiceShutdown() override;
     virtual bool AbortiveQuit() override;
     virtual bool OnInstall() override;
+#endif
 
 protected:
     void AddDirector(cIGZCOMDirector *pCOMDirector);

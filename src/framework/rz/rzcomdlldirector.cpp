@@ -190,6 +190,7 @@ uint32_t cRZCOMDllDirector::GetHeapAllocatedSize()
     return 0;
 }
 
+#if 0
 bool cRZCOMDllDirector::PreFrameWorkInit()
 {
     return true;
@@ -229,6 +230,7 @@ bool cRZCOMDllDirector::OnInstall()
 {
     return true;
 }
+#endif
 
 void cRZCOMDllDirector::AddDirector(cIGZCOMDirector *pDirector)
 {

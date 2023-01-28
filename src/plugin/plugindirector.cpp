@@ -32,7 +32,7 @@ extern "C" cIGZCOMDirector *GZDllGetGZCOMDirector()
     return static_cast<cIGZCOMDirector *>(RZGetCOMDllDirector());
 }
 
-cIGZFrameWork *RZGetFrameWork()
+void *RZGetFrameWork()
 {
     return RZGetCOMDllDirector()->FrameWork();
 }

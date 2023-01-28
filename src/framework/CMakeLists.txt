@@ -20,6 +20,8 @@ set(FRAMEWORK_SRC
     gimexstd.cpp
     gitinfo.h
     gz/gzclsid.h
+    gz/gzframework.cpp
+    gz/gzframework.h
     gz/igzapp.h
     gz/igzbuffer.h
     gz/igzcmdline.h
