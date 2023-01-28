@@ -23,12 +23,12 @@ static constexpr uint32_t GZIID_cIGZFrameWorkHooks = 0x03FA40BF;
 class cIGZFrameWorkHooks : public cIGZUnknown
 {
 public:
-    virtual bool PreFrameWorkInit() = 0;
-    virtual bool PreAppInit() = 0;
-    virtual bool PostAppInit() = 0;
-    virtual bool PreAppShutdown() = 0;
-    virtual bool PostAppShutdown() = 0;
-    virtual bool PostSystemServiceShutdown() = 0;
-    virtual bool AbortiveQuit() = 0;
-    virtual bool OnInstall() = 0;
+    virtual bool HookPreFrameWorkInit() = 0;
+    virtual bool HookPreAppInit() = 0;
+    virtual bool HookPostAppInit() = 0;
+    virtual bool HookPreAppShutdown() = 0;
+    virtual bool HookPostAppShutdown() = 0;
+    virtual bool HookPostSystemServiceShutdown() = 0;
+    virtual bool HookAbortiveQuit() = 0;
+    virtual bool HookOnInstall() = 0;
 };
